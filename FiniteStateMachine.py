@@ -13,8 +13,6 @@ class State():
 			self.on_exit()
 		if target_state.name not in self._transitions: # this is coming back false when it shouldn't
 			raise NoSuchTransitionError(self.name, target_state.name) 
-		print("aiming for",target_state.name)
-		print(self._transitions)
 		action = self._transitions[target_state.name]["on_transition"]
 		if action is not None:
 			action()
