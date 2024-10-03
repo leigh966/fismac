@@ -1,8 +1,8 @@
 from NoSuchStateError import NoSuchStateError
 from NoSuchTransitionError import NoSuchTransitionError
 class State():
-	_transitions = {}
 	def __init__(self, name, on_enter=None, on_exit=None):
+		self._transitions = {}
 		self.name = name
 		self.on_enter = on_enter
 		self.on_exit = on_exit
@@ -19,13 +19,14 @@ class State():
 
 			
 class FiniteStateMachine:
-	_current_state = None
-	_states = {}
 	def __init__(self, state_names=[], start_state=None):
+		self._states = {}
 		for name in state_names:
 			self.add_state(name)
+		self._current_state = None
 		if start_state is not None:
 			self.transition_state(start_state)
+			
 	def add_state(self,state_name):
 		self._states[state_name] = State(state_name)
 		return self
